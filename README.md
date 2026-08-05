@@ -5,14 +5,18 @@ directory whose runtime instructions are in `SKILL.md`.
 
 ## Installation
 
-Install the Swift style skill globally with the Skills CLI:
+Install a skill globally with the Skills CLI, replacing `<skill-name>` with its
+installed skill identifier:
 
 ```sh
 npx skills add justin/jww-skills \
-  --skill jww-swift-style \
+  --skill <skill-name> \
   --agent codex \
   --global
 ```
+
+Available skills are `jww-git-workflow`, `jww-repository-validation`, and
+`jww-swift-style`.
 
 ```sh
 npx skills add justin/jww-skills --list
@@ -22,7 +26,7 @@ For a manual installation, copy the desired skill directory into your agent
 harness's skills directory, preserving its internal structure:
 
 ```sh
-cp -R skills/jww-swift-style /path/to/your/skills/jww-swift-style
+cp -R skills/<directory-name> /path/to/your/skills/<skill-name>
 ```
 
 Restart the agent session or reload installed skills after copying it. The
@@ -38,15 +42,11 @@ Codex prompt:
 Use $jww-swift-style to implement this Swift change.
 ```
 
-### JWW Swift Style
-
-[`skills/jww-swift-style/`](skills/jww-swift-style/) guides Swift changes across
-JWW projects, including application and package code, extensions, and tests.
-It is a personal style companion, not a platform-specific implementation guide.
-
-It treats the target file, nearby source, and applicable `AGENTS.md` files as
-the authority. Its defaults cover source layout, access control, SwiftLint
-limits, platform boundaries, and test conventions.
+| Installed name | Directory | Purpose |
+| --- | --- | --- |
+| `jww-git-workflow` | [`skills/jww-git-workflow/`](skills/jww-git-workflow/) | Safe Git, pull-request, and publishing workflows. |
+| `jww-repository-validation` | [`skills/jww-repository-validation/`](skills/jww-repository-validation/) | Proportionate validation for repository changes. |
+| `jww-swift-style` | [`skills/jww-swift-style/`](skills/jww-swift-style/) | JWW Swift style conventions for application, package, extension, and test code. |
 
 ## Adding a Skill
 

@@ -3,16 +3,17 @@
 ## Project Structure
 
 This repository contains reusable Codex skills. Each skill lives in its own
-directory under `skills/`. The current `skills/jww-swift-style/` skill contains:
+directory under `skills/` and contains:
 
 - `SKILL.md`: the skill's instructions and front matter.
 - `agents/openai.yaml`: display metadata for the Codex skill picker.
-- `assets/`: icons and other packaged visual assets.
+- `assets/`: optional icons and other packaged visual assets.
 
-Keep files belonging to a skill within `skills/<skill-name>/`. Use lowercase,
-hyphenated directory names such as `jww-swift-style`. Place images and similar
-resources in `assets/`, and reference them with paths relative to the metadata
-file.
+Keep files belonging to a skill within `skills/<directory-name>/`. Use
+lowercase, hyphenated directory names prefixed with `jww-`, such as
+`jww-swift-style`. The front-matter `name` must match the directory name. Place
+images and similar resources in `assets/`, and reference them with paths
+relative to the skill directory.
 
 ## Authoring Skills
 
