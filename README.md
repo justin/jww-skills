@@ -1,22 +1,35 @@
 # JWW Skills
 
-Reusable Codex skills for JWW projects. Each skill is a self-contained
+Reusable agent skills for JWW projects. Each skill is a self-contained
 directory whose runtime instructions are in `SKILL.md`.
 
 ## Installation
 
 Install a skill globally with the Skills CLI, replacing `<skill-name>` with its
-installed skill identifier:
+installed skill identifier. Repeat `-a` for each agent; a comma-separated list
+is rejected:
 
 ```sh
 npx skills add justin/jww-skills \
   --skill <skill-name> \
-  --agent codex \
+  -a claude-code -a codex -a github-copilot \
   --global
 ```
 
-Available skills are `jww-git-workflow`, `jww-repository-validation`, and
-`jww-swift-style`.
+Skills install to `~/.agents/skills/<skill-name>/` and are wired into each
+agent's own skills directory from there. The whole directory is preserved, so
+any `prompts/` and `hooks/` a skill ships arrive with it. Run
+`npx skills add justin/jww-skills -a <agent> --list` to see the agents the CLI
+supports, and `npx skills update` to refresh installed skills.
+
+Install from a local checkout to test a skill before it is pushed:
+
+```sh
+npx skills add . --skill <skill-name> -a claude-code --global
+```
+
+Available skills are `jww-bounded-investigation`, `jww-git-workflow`,
+`jww-handoff`, `jww-repository-validation`, and `jww-swift-style`.
 
 ```sh
 npx skills add justin/jww-skills --list
@@ -35,16 +48,27 @@ picker metadata and its icon.
 
 ## Usage
 
-Invoke an installed skill by name. For example, use the Swift style skill in a
-Codex prompt:
+Invoke an installed skill by name. In Claude Code, skills and slash commands
+are the same mechanism, so a skill is invocable directly:
+
+```text
+/jww-swift-style
+```
+
+In Codex, reference the skill in a prompt:
 
 ```text
 Use $jww-swift-style to implement this Swift change.
 ```
 
+An agent also loads a skill on its own when the request matches the skill's
+`description`, unless the skill's front matter restricts that.
+
 | Installed name | Directory | Purpose |
 | --- | --- | --- |
+| `jww-bounded-investigation` | [`skills/jww-bounded-investigation/`](skills/jww-bounded-investigation/) | Evidence ledger and search delegation for multi-file investigation. Pairs with `jww-handoff`. |
 | `jww-git-workflow` | [`skills/jww-git-workflow/`](skills/jww-git-workflow/) | Safe Git, pull-request, and publishing workflows. |
+| `jww-handoff` | [`skills/jww-handoff/`](skills/jww-handoff/) | Canonical handoff file for work spanning sessions or phases. See its [`INSTALL.md`](skills/jww-handoff/INSTALL.md) for slash-command and hook setup. |
 | `jww-repository-validation` | [`skills/jww-repository-validation/`](skills/jww-repository-validation/) | Proportionate validation for repository changes. |
 | `jww-swift-style` | [`skills/jww-swift-style/`](skills/jww-swift-style/) | JWW Swift style conventions for application, package, extension, and test code. |
 
@@ -56,7 +80,10 @@ Create a lowercase, hyphenated directory under `skills/`, such as
 ```text
 skills/skill-name/
 ├── SKILL.md            # Instructions and YAML front matter
+├── INSTALL.md          # Required when shipping prompts/ or hooks/
 ├── agents/openai.yaml  # Optional Codex picker metadata
+├── prompts/<harness>/  # Optional per-harness invocation wrappers
+├── hooks/              # Optional harness-specific automation scripts
 └── assets/             # Referenced icons and other resources
 ```
 
