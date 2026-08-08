@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bounded Investigation"
+  short_description: "Delegate broad searches and keep an evidence ledger."
+  default_prompt: "Use $jww-bounded-investigation to investigate this request, delegating broad searches and keeping an evidence ledger."
