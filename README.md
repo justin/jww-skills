@@ -16,6 +16,17 @@ npx skills add justin/jww-skills \
   --global
 ```
 
+`jww-codex-maintenance` is Codex-only. Install it separately with only the
+Codex target; its `compatibility` field documents the requirement but does not
+replace agent-specific installation:
+
+```sh
+npx skills add justin/jww-skills \
+  --skill jww-codex-maintenance \
+  -a codex \
+  --global
+```
+
 Skills install to `~/.agents/skills/<skill-name>/` and are wired into each
 agent's own skills directory from there. The whole directory is preserved, so
 any `prompts/` and `hooks/` a skill ships arrive with it. Run
@@ -28,8 +39,9 @@ Install from a local checkout to test a skill before it is pushed:
 npx skills add . --skill <skill-name> -a claude-code --global
 ```
 
-Available skills are `jww-bounded-investigation`, `jww-git-workflow`,
-`jww-handoff`, `jww-repository-validation`, and `jww-swift-style`.
+Available skills are `jww-bounded-investigation`, `jww-codex-maintenance`,
+`jww-git-workflow`, `jww-handoff`, `jww-repository-validation`, and
+`jww-swift-style`.
 
 ```sh
 npx skills add justin/jww-skills --list
@@ -67,6 +79,7 @@ An agent also loads a skill on its own when the request matches the skill's
 | Installed name | Directory | Purpose |
 | --- | --- | --- |
 | `jww-bounded-investigation` | [`skills/jww-bounded-investigation/`](skills/jww-bounded-investigation/) | Evidence ledger and search delegation for multi-file investigation. Pairs with `jww-handoff`. |
+| `jww-codex-maintenance` | [`skills/jww-codex-maintenance/`](skills/jww-codex-maintenance/) | Codex-only local-state audits, reversible cleanup, and maintenance reporting. |
 | `jww-git-workflow` | [`skills/jww-git-workflow/`](skills/jww-git-workflow/) | Safe Git, pull-request, and publishing workflows. |
 | `jww-handoff` | [`skills/jww-handoff/`](skills/jww-handoff/) | Canonical handoff file for work spanning sessions or phases. See its [`INSTALL.md`](skills/jww-handoff/INSTALL.md) for slash-command and hook setup. |
 | `jww-repository-validation` | [`skills/jww-repository-validation/`](skills/jww-repository-validation/) | Proportionate validation for repository changes. |

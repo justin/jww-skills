@@ -1,0 +1,6 @@
+interface:
+  display_name: "Codex Maintenance"
+  short_description: "Audit and safely reduce Codex local state."
+  icon_small: "./assets/cleanup-symbol.png"
+  icon_large: "./assets/cleanup-symbol.png"
+  default_prompt: "Use $jww-codex-maintenance to audit Codex storage, prepare safe archival, and verify the result."
