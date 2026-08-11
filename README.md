@@ -40,8 +40,8 @@ npx skills add . --skill <skill-name> -a claude-code --global
 ```
 
 Available skills are `jww-bounded-investigation`, `jww-codex-maintenance`,
-`jww-git-workflow`, `jww-handoff`, `jww-repository-validation`, and
-`jww-swift-style`.
+`jww-git-workflow`, `jww-handoff`, `jww-repository-validation`,
+`jww-swift-style`, `manuscript-polish-and-publish`, and `composio-cli`.
 
 ```sh
 npx skills add justin/jww-skills --list
