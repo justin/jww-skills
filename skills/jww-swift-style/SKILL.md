@@ -16,7 +16,7 @@ Generate code that looks as though it belongs beside the code being changed. Tre
 ## Before Writing
 
 1. Read the target file and a nearby comparable file. Read each applicable nested `AGENTS.md`.
-2. Preserve existing structure, import ordering, access-control style, and all pragma dividers. Do not perform unrelated formatting or style cleanup.
+2. Preserve existing structure, import ordering, access-control style, and all `MARK` and section dividers. Do not perform unrelated formatting or style cleanup.
 3. Select APIs appropriate to the target platform and module. Keep shared code compatible with every platform the module supports unless narrow platform conditionals are required.
 
 ## Source Layout
@@ -32,11 +32,12 @@ Generate code that looks as though it belongs beside the code being changed. Tre
 ```
 
 - Use the same divider at file scope for extension files when it matches neighboring files, with the contextual section name.
+- For new top-level files, prefer one primary type. Do not split existing files solely for style; follow nearby grouping conventions for supporting types, extensions, and protocols.
 - Prefer separate extensions or files for distinct protocol responsibilities when that matches neighboring code.
 - Name focused extension files `Type+Purpose.swift` when creating a new file. Group related extensions by subject when the surrounding module already does so.
 - Keep initializers, lifecycle methods, actions/delegate methods, and private conveniences in the local order. Put simple stored properties before those sections.
 - Follow the enclosing file's `self.` convention. In view-controller code, use explicit `self.` consistently where the file does; do not add or remove it globally.
-- Put `@available`, `@Test`, `@ViewBuilder`, and `@Model` on the line above their declaration. Keep `@IBAction`, `@NSManaged`, `@Environment`, `@State`, `@Binding`, `@ObservedObject`, `@EnvironmentObject`, `@SceneStorage`, `@Published`, `@StateObject`, `@ViewStorage`, `@FocusState`, and `@GestureState` on the same line as their declarations.
+- When the SwiftLint configuration defines `always_on_same_line` or `always_on_line_above`, follow those rules. Otherwise, put `@available`, `@Test`, `@ViewBuilder`, and `@Model` on the line above their declaration. Keep property-wrapper attributes on the same declaration and follow local wrapping when a declaration would exceed configured limits.
 - Match local wrapping of long declarations and calls. Wrap for readability before relying on a lint exception. Follow the repository's configured line and complexity limits, and use the smallest scoped `swiftlint:disable` only when a legitimate local exception remains.
 
 ## Naming, Access, and Documentation
@@ -45,7 +46,7 @@ Generate code that looks as though it belongs beside the code being changed. Tre
 - Prefer `final` for non-subclassed reference types when that matches the type's role.
 - Use `private(set)` when callers need observation but not mutation.
 - Write English documentation comments for public/shared APIs and comments for intent or non-obvious platform constraints. Do not add comments that merely repeat the code, temporal labels, or LLM/process references.
-- Preserve useful comments and pragma dividers. Update a comment only when it becomes inaccurate.
+- Preserve useful comments and `MARK` and section dividers. Update a comment only when it becomes inaccurate.
 
 ## Swift and Apple APIs
 
@@ -57,9 +58,9 @@ Generate code that looks as though it belongs beside the code being changed. Tre
 
 ## Tests
 
-- Follow the existing test file's framework and structure. For new tests, use Swift Testing—`import Testing`, `@Test`, `#expect`, and `#require`—unless a documented target constraint requires XCTest. Put `@Test` on the line above its declaration.
+- Follow the existing test file's framework and structure. For a new test in an XCTest target, use XCTest unless the target is actively migrating. Otherwise, prefer Swift Testing—`import Testing`, `@Test`, `#expect`, and `#require`.
 - Keep tests focused, named for behavior, and use the repository's existing fixtures and helpers. Retain existing XCTest tests when not changing their behavior; do not migrate them merely for style.
 
 ## Final Check
 
-Before presenting Swift code, reread the changed context and verify that it preserves dividers, local ordering, imports, visibility, platform boundaries, and the relevant SwiftLint limits. Run the repository's targeted SwiftLint command and appropriate build or test verification when making an actual change.
+Before presenting Swift code, reread the changed context and verify that it preserves dividers, local ordering, imports, visibility, platform boundaries, and relevant SwiftLint limits. When making an actual change, run the repository's targeted lint command when configured, plus the most relevant build or test verification.
