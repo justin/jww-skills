@@ -10,22 +10,22 @@ Follow repository-specific instructions first. Treat them as the source of truth
 ## Before Changing Git State
 
 1. Inspect `git status`, the current branch, and relevant repository instructions.
-2. Preserve unrelated changes. Do not discard work, amend commits, or clean history without the required approval.
+2. Preserve unrelated changes. Do not discard work or clean history without the required approval. Amend commits only as directed in the commit workflow.
 3. Separate exploratory work from completed implementation. Only stage and commit the latter.
 
 ## Commit Workflow
 
 1. Review the intended diff and stage only files belonging to the completed change.
 2. Run the validation required by the repository and review the staged diff before committing.
-3. Keep each commit cohesive. Prefer a capitalized, present-tense subject of at most 50 characters with no trailing punctuation unless repository conventions differ.
+3. Keep each commit cohesive. When applying feedback to an existing pull request or work in progress, amend the applicable existing commit instead of adding a follow-up commit, unless Justin or repository conventions require separate commits. Prefer a capitalized, present-tense subject of at most 50 characters with no trailing punctuation unless repository conventions differ.
 4. Use a wrapped commit body when it clarifies why the change is needed, its approach, or side effects. Include a repository-required work-item reference or closing keyword when applicable.
 
 ## Updating and Publishing
 
 1. Rebase a feature branch onto its remote base branch rather than merging the base branch into it, unless the repository explicitly requires otherwise.
 2. Before pushing, verify the branch, remote, and exact commits that will be sent.
-3. Obtain Justin's explicit approval before any push or remote mutation. A push, pull-request creation, merge, force-push, deletion, tag change, or repository-setting change is not implied by local implementation work.
-4. For a rewritten branch, obtain fresh approval immediately before force-pushing. If a lease is stale, fetch and compare remote work before deciding how to proceed; preserve equivalent or concurrent work rather than overwriting it.
+3. Push a validated feature branch and create or update its pull request when that completes Justin's request; no separate approval is needed for those routine publication steps. Do not merge, delete branches or tags, change repository settings, or make another destructive remote mutation without explicit approval.
+4. When an amendment rewrites a published branch, force-push only with `--force-with-lease`. If the lease is stale, fetch and compare remote work before deciding how to proceed; preserve equivalent or concurrent work rather than overwriting it.
 
 ## Pull Requests and GitHub
 
