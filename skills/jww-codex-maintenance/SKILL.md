@@ -8,6 +8,12 @@ compatibility: >-
 
 # Maintain Codex Local State
 
+## Xcode Availability
+
+This skill is unavailable in Xcode. Its procedure depends on Codex Desktop or
+CLI local state and supported Codex task-management operations, which Xcode
+does not provide. Use it only in a Codex harness.
+
 Separate diagnosis from cleanup. Large local state can correlate with a slow app,
 but do not treat file size as proof of the cause or promise a speedup.
 

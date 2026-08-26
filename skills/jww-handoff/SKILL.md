@@ -11,6 +11,13 @@ Preserve continuity in one durable file rather than in conversation history.
 Automatic context compaction is not a handoff: it summarizes what was said, not
 what was verified, and it does not survive a new session.
 
+## Xcode Availability
+
+Xcode can use the Write and Resume procedure when asked directly, but does not
+run this skill's Codex or Claude prompt wrappers and hooks. Invoke the skill in
+an Xcode conversation and state `write` or `resume` plus the optional task slug
+in the request; capture remains manual before an interruption.
+
 ## Select the Mode
 
 Read `$ARGUMENTS` when the harness provides it.

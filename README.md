@@ -5,6 +5,29 @@ directory whose runtime instructions are in `SKILL.md`.
 
 ## Installation
 
+### Xcode 27
+
+Xcode 27 can install this repository as an Agent Plugins 1.0 plug-in. In
+**Xcode → Settings → Intelligence → Plug-ins**, choose **Add Plug-in** then
+**Add from URL** and enter the repository's Git URL. Select the individual
+skills to install after Xcode finishes cloning the plug-in.
+
+The root [`plugin.json`](plugin.json) is the Xcode plug-in manifest. The
+existing `skills/<name>/SKILL.md` folders are the plug-in payload, so no MCP
+server or custom agent configuration is required. Xcode does not run Codex or
+Claude hooks and prompt wrappers: `jww-handoff` remains available for manual
+handoffs, while `jww-codex-maintenance` is intentionally unavailable because
+it requires Codex local-state and task-management capabilities.
+
+Before creating a release, verify the intended release version against the
+manifest:
+
+```sh
+python3 scripts/validate-xcode-plugin.py --release-version 0.1.0
+```
+
+### Skills CLI
+
 Install a skill globally with the Skills CLI, replacing `<skill-name>` with its
 installed skill identifier. Repeat `-a` for each agent; a comma-separated list
 is rejected:
@@ -109,6 +132,7 @@ actionable, and tool-neutral unless a tool is required.
 Review changed Markdown and YAML, confirm referenced assets exist, then run:
 
 ```sh
+python3 scripts/validate-xcode-plugin.py
 git diff --check
 ```
 

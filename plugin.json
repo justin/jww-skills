@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "jww-skills",
+  "version": "0.1.0",
+  "description": "My personal agent-based workflows",
+  "author": {
+    "name": "Justin Williams"
+  }
+}
