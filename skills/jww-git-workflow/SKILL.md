@@ -17,8 +17,11 @@ Follow repository-specific instructions first. Treat them as the source of truth
 
 1. Review the intended diff and stage only files belonging to the completed change.
 2. Run the validation required by the repository and review the staged diff before committing.
-3. Keep each commit cohesive. When applying feedback to an existing pull request or work in progress, amend the applicable existing commit instead of adding a follow-up commit, unless Justin or repository conventions require separate commits. Prefer a capitalized, present-tense subject of at most 50 characters with no trailing punctuation unless repository conventions differ.
-4. Use a wrapped commit body when it clarifies why the change is needed, its approach, or side effects. Include a repository-required work-item reference or closing keyword when applicable.
+3. Keep each commit cohesive. When applying feedback to an existing pull request or work in progress, amend the applicable existing commit instead of adding a follow-up commit, unless Justin or repository conventions require separate commits.
+4. Write a capitalized imperative subject that describes the delivered behavior, not the implementation phase or files changed. Omit a trailing period and keep it under about 60 characters. Do not use type or scope prefixes.
+5. Add a body whenever the rationale is not evident from the diff. Always do so for security, concurrency, or default changes, and for changes that remove or restrict existing behavior. Explain the problem first, then the change, then any consequence the reader needs. Wrap the commit body at 72 columns; do not enumerate changed files.
+6. When a commit resolves an issue, close with exactly one issue reference on its final line, such as `Closes #231` or `Fixes #253`. Do not mention an assistant, model, agent, or tool, and do not add generated-by trailers.
+7. Rewrite a consolidated commit message to describe the delivered feature, rather than the final working checkpoint.
 
 ## Updating and Publishing
 
