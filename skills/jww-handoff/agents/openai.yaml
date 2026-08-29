@@ -1,4 +1,4 @@
 interface:
   display_name: "Work Handoff"
   short_description: "Write and resume a canonical handoff file."
-  default_prompt: "Use $jww-handoff to create or update the canonical work handoff."
+  default_prompt: "Use $jww-handoff to write or resume the canonical work handoff."

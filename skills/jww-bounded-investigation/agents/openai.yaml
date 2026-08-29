@@ -1,10 +1,4 @@
 interface:
   display_name: "Bounded Investigation"
   short_description: "Investigate unfamiliar code with evidence and bounded search."
-  default_prompt: >-
-    Use $jww-bounded-investigation to investigate this request. First define
-    the question and likely search areas; delegate only broad, read-only
-    repository sweeps when they reduce context volume. Maintain an evidence
-    ledger citing file and line, including ruled-out paths. Return the
-    conclusion, supporting evidence, remaining uncertainty, and the smallest
-    recommended next step. Do not edit files unless I separately ask.
+  default_prompt: "Use $jww-bounded-investigation to investigate this request without editing files."

@@ -1,12 +1,12 @@
 ---
 name: jww-swift-style
-description: Style Swift code for JWW projects. Use when generating, editing, or reviewing application, package, extension, or test code that must match Justin's personal conventions; do not use for non-Swift work or as a substitute for platform-specific implementation skills.
+description: Style Swift code for JWW projects. Use when generating, editing, or reviewing application, package, extension, or test code that must match Justin's conventions; do not use for non-Swift work or as a substitute for platform-specific implementation skills.
 paths: "**/*.swift"
 ---
 
 # JWW Swift Style
 
-Generate code that looks as though it belongs beside the code being changed. Treat the nearest surrounding Swift source and applicable `AGENTS.md` as the final authority when they differ from these defaults.
+**The primary rule: generate code that looks as though it belongs beside the code being changed.** The nearest surrounding Swift source and the applicable `AGENTS.md` are the final authority. Everything below is the default only where the surrounding code is silent — chiefly new top-level files.
 
 ## Inputs and Output
 
@@ -22,7 +22,7 @@ Generate code that looks as though it belongs beside the code being changed. Tre
 ## Source Layout
 
 - Use four-space indentation and blank lines to group declarations and logical steps.
-- Add sections to substantial types only when the repository uses the divider below. Keep existing section names and ordering when extending a type.
+- Add sections to substantial types only when the repository already uses the divider style shown below. Match the neighboring files exactly: some use only the `// MARK:` line, others follow it with the box comment. Keep existing section names and ordering when extending a type.
 
 ```swift
 // MARK: View Lifecycle

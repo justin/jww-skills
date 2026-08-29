@@ -1,11 +1,19 @@
 ---
 name: jww-git-workflow
-description: Apply Justin's detailed Git and pull-request workflow. Use when planning or performing branches, commits, rebases, history cleanup, pushes, pull requests, or GitHub work after repository-specific instructions have been read.
+description: Apply Justin's detailed Git and pull-request workflow. Use when planning or performing branches, commits, rebases, history cleanup, pushes, pull requests, or GitHub work. Do not use for read-only Git inspection or when a repository's own workflow documentation already covers the task.
 ---
 
 # Git Workflow
 
-Follow repository-specific instructions first. Treat them as the source of truth for branch names, remotes, checks, and pull-request conventions.
+Follow repository-specific instructions first. Treat them as the source of truth for branch names, remotes, checks, and pull-request conventions. Read them before changing Git state.
+
+This skill assumes the general Git-safety rules supplied by the environment (preserve unrelated work, approval before destructive remote changes, verbatim CLI output). What it adds:
+
+- commit subjects that name delivered behavior, with a body whenever rationale is not evident from the diff (see Commit Workflow)
+- rebase a feature branch onto its base rather than merging the base in
+- apply pull-request feedback by amending the relevant existing commit, not a follow-up commit
+- when a push rewrites a published branch, use `--force-with-lease` and reconcile a stale lease before overwriting
+- pushing a validated branch and opening or updating its PR is a routine step that needs no separate approval; merging, deleting, and other remote mutations still do
 
 ## Before Changing Git State
 
@@ -34,4 +42,4 @@ Follow repository-specific instructions first. Treat them as the source of truth
 
 1. Follow repository-specific pull-request requirements before general guidance.
 2. Preserve decision-relevant Git and GitHub CLI output verbatim, especially errors and remote-state conflicts.
-3. Use the available GitHub-specific workflow when the task is review feedback, CI failure, or pull-request triage. Do not claim connector data includes information it does not provide.
+3. For review feedback, CI failures, or pull-request triage, use the harness's GitHub integration or the `gh` CLI. Do not claim connector or CLI output includes information it does not provide.

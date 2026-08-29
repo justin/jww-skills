@@ -8,6 +8,7 @@ directory under `skills/` and contains:
 - `SKILL.md`: the skill's instructions and front matter.
 - `agents/openai.yaml`: display metadata for the Codex skill picker.
 - `assets/`: optional icons and other packaged visual assets.
+- `references/`: optional detail loaded only for the applicable mode or task.
 - `prompts/<harness>/`: optional invocation wrappers for a harness whose
   slash-command format differs from `SKILL.md`.
 - `hooks/`: optional harness-specific scripts that automate the skill.
@@ -21,8 +22,8 @@ skill body stays tool-neutral.
 Keep files belonging to a skill within `skills/<directory-name>/`. Use
 lowercase, hyphenated directory names prefixed with `jww-`, such as
 `jww-swift-style`. The front-matter `name` must match the directory name. Place
-images and similar resources in `assets/`, and reference them with paths
-relative to the skill directory.
+images and similar resources in `assets/`, and reference packaged resources
+with paths relative to the skill directory.
 
 ## Authoring Skills
 

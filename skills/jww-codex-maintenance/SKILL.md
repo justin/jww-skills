@@ -17,17 +17,36 @@ does not provide. Use it only in a Codex harness.
 Separate diagnosis from cleanup. Large local state can correlate with a slow app,
 but do not treat file size as proof of the cause or promise a speedup.
 
+## Never
+
+- Simulate archival by moving session JSONL files or editing the local-state
+  database.
+- Vacuum, rebuild, edit, or replace a Codex database without an explicit repair
+  request backed by an official procedure.
+- Kill background processes, language servers, or dev servers. Report them and
+  let the user decide.
+- Copy transcripts, logs, memories, config, databases, or credentials to a
+  repository, shared folder, or cloud-synced location without explicit approval.
+- Mutate live Codex files on a schedule.
+
 ## Select the Mode
 
-- **Audit** is the default. Inspect and report without changing tasks, files,
-  configuration, processes, or scheduled tasks.
-- **Apply** requires an explicit cleanup request. Back up affected state, present
-  the resolved targets, and make only the approved reversible changes.
-- **Automate** creates a recurring audit and report. Do not schedule unattended
-  mutation of live Codex files.
+Default to **Audit**. Switch only on an explicit request: the user says "clean
+up", "rotate", "archive", or "delete" for **Apply**; "schedule" or "recurring
+report" for **Automate**. Treat "make Codex faster" as an audit request, not
+permission to mutate state.
+
+- **Audit**: inspect and report without changing tasks, files, configuration,
+  processes, or scheduled tasks.
+- **Apply**: read [references/apply.md](references/apply.md), resolve the exact
+  targets, and perform only the cleanup authorized by the user's request. When
+  the request authorizes a category but not distinguishable targets within it,
+  present those targets and obtain approval before changing them.
+- **Automate**: create a recurring read-only audit and report.
+  Read [references/automation.md](references/automation.md) before scheduling.
 
 If the request is ambiguous, complete the audit and stop with a proposed cleanup
-set rather than interpreting “make Codex faster” as permission to mutate state.
+set.
 
 ## Inventory the Current State
 
@@ -78,54 +97,10 @@ Classify each item and explain the evidence:
   compare regular and extended-length paths canonically, but do not rewrite app
   state merely to normalize display text.
 
-Exclude pinned tasks, active goals, running scheduled tasks, dirty worktrees,
-current logs, and uncertain paths from automatic cleanup.
-
-## Back Up Before Applying
-
-1. Resolve a timestamped backup directory outside the live source directories.
-   Confirm that enough free space exists before copying.
-2. Back up only the state that the approved cleanup can affect, plus the config
-   and indexes needed to restore it. Create a manifest with source paths, sizes,
-   timestamps, and checksums.
-3. Treat transcripts, logs, memories, configuration, and databases as sensitive.
-   Do not place them in a repository, shared folder, or cloud-synced destination
-   without explicit approval. Do not copy authentication credentials unless the
-   user specifically requests an encrypted credential backup.
-4. When a database is live, use a supported backup operation. Otherwise require
-   Codex to be closed and copy the database together with relevant sidecars. Do
-   not assume copying one live SQLite file creates a consistent backup.
-5. Verify that the backup can be read before changing the source.
-
-If the desktop app is open, limit the apply phase to supported task or scheduled
-run operations. For log rotation, database maintenance, or direct app-owned file
-movement, provide the exact offline runbook and wait for the user to quit the app
-or continue from a separate CLI session.
-
-## Apply Reversible Cleanup
-
-Perform only the approved categories:
-
-1. For a large task that must remain resumable, invoke `$jww-handoff` when it is
-   available and write the canonical handoff in the task's project. Verify the
-   handoff against current source before archiving the task.
-2. Archive tasks and scheduled runs through host-supported operations. Never
-   simulate archival by moving session JSONL files or changing the local state
-   database. Preserve pinned tasks.
-3. Archive app-managed worktrees by archiving their owning task or run. For
-   ordinary Git worktrees, inspect `git worktree list --porcelain` and
-   `git worktree prune --dry-run`; do not move worktree directories manually.
-   Remove a clean worktree only when the user explicitly approves that target.
-4. With Codex stopped, move rotatable logs into the backup/archive directory and
-   leave the expected live log directory in place. Prefer rotation or
-   compression to deletion.
-5. Patch dead project entries in the documented config source only after the
-   user approves each entry. Preserve comments and unrelated settings, then
-   parse the resulting TOML.
-6. Do not vacuum, edit, rebuild, or replace a Codex database unless the user
-   explicitly requests database repair and an official procedure supports it.
-7. Do not kill background processes. Give the user the exact candidates and let
-   them decide which processes to stop.
+Exclude pinned tasks, running or otherwise active work, dirty worktrees, current
+logs, and uncertain paths from cleanup. When the host cannot expose one of
+those states, classify the target as uncertain rather than inferring that it is
+safe.
 
 ## Verify and Report
 
@@ -146,22 +121,6 @@ separately from perceived performance; never repeat an anecdotal “10x faster�
 claim as an expected result.
 
 The final report must include the mode, baseline, candidate set, excluded items,
-backup location, exact changes, validation results, remaining risks, and restore
-instructions.
-
-## Automate the Audit
-
-Create or update a scheduled task only when the user asks. Make the recurring
-task read-only: inventory sizes and counts, identify archival candidates, flag
-large logs and stale worktrees, and return a report for review. Test the prompt
-manually before scheduling it.
-
-Keep local scheduled-task constraints explicit: the computer and desktop app
-must be running to access local projects, and frequent scheduled runs can create
-additional worktrees. Use a standalone scheduled task for independent weekly
-reports, avoid pinning routine runs, and archive reviewed runs through supported
-operations.
-
-Do not schedule offline log rotation or database copying from the desktop app;
-those steps require the app to be stopped and therefore belong in an explicit
-interactive maintenance run.
+exact changes, validation results, and remaining risks. In Apply mode, also
+include the backup location, restore instructions, and the user-selected backup
+retention or review decision; do not delete the backup implicitly.

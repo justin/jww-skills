@@ -28,16 +28,17 @@ Read `$ARGUMENTS` when the harness provides it.
   this repository, and otherwise report that none exists.
 
 A second argument names the task slug. Infer it from the branch or the stated
-objective when absent.
+objective when absent. When several handoffs could apply and neither the branch
+nor the request identifies one, list the candidates and ask which to resume.
 
 ## Locate the Canonical File
 
 1. Follow a handoff or planning-document location documented by the repository
    when one exists.
 2. Otherwise use `.handoffs/<task-slug>.md` at the repository root. Confirm the
-   path is ignored by version control before writing, and add it to a global
-   ignore file rather than the repository's when it is not. Ask before
-   committing a handoff.
+   path is ignored by version control before writing. If it is not ignored,
+   report the needed `.handoffs/` entry and ask before changing either the
+   repository or global ignore configuration. Ask before committing a handoff.
 3. Update the existing file for a task. Do not create a parallel version, and do
    not split one outcome across several files. Link related tasks by path
    instead of repeating their content.
@@ -46,13 +47,14 @@ objective when absent.
 ## Write
 
 Write at a stable decision point, before a risky or long operation, and before
-any expected interruption. Include only these sections:
+any expected interruption. Follow a repository-defined handoff format when one
+exists; otherwise include these sections:
 
 ```markdown
 # <Task title>
 
 Updated: <YYYY-MM-DD>
-Branch: <branch name>
+Branch: <branch name, when the work is in Git>
 
 ## Objective
 <The outcome, and the constraints that cannot be traded away.>
@@ -64,7 +66,7 @@ Branch: <branch name>
 <Files inspected, files changed, and why each matters.>
 
 ## Validation
-<Each check run, its exact command, and its result. Omit checks not run here.>
+<Each check run, its exact command, result, and when it was observed.>
 
 ## Open
 <Unresolved risks, checks not run and why, and decisions needing Justin.>
@@ -74,9 +76,11 @@ Branch: <branch name>
 whole file.>
 ```
 
-Keep observed facts and proposed work in separate sections. Never record a
-check as passing unless it ran in this session and its output was read. Record
-a failure with the smallest excerpt that identifies it.
+Keep observed facts and proposed work in separate sections. Record a check as
+current-session evidence only when its output was read in this session. Preserve
+useful validation recorded by an earlier handoff with its observation date, but
+do not present it as newly rerun. Record a failure with the smallest excerpt
+that identifies it.
 
 When an evidence ledger was kept during investigation, its lines populate
 Decisions and Touched directly. Do not re-derive them from the conversation.

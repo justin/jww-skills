@@ -118,6 +118,7 @@ skills/skill-name/
 ├── SKILL.md            # Instructions and YAML front matter
 ├── INSTALL.md          # Required when shipping prompts/ or hooks/
 ├── agents/openai.yaml  # Optional Codex picker metadata
+├── references/         # Optional detail loaded only when needed
 ├── prompts/<harness>/  # Optional per-harness invocation wrappers
 ├── hooks/              # Optional harness-specific automation scripts
 └── assets/             # Referenced icons and other resources

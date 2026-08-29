@@ -3,9 +3,4 @@ interface:
   short_description: "Read-only Codex storage audit with safe cleanup proposals."
   icon_small: "./assets/cleanup-symbol.png"
   icon_large: "./assets/cleanup-symbol.png"
-  default_prompt: >-
-    Use $jww-codex-maintenance in Audit mode. Inspect Codex desktop and CLI
-    local state without modifying files, tasks, configuration, processes, or
-    schedules. Return a concise report with baseline sizes/counts, candidate
-    cleanup items, exclusions, evidence, likely risks, and a reversible
-    cleanup plan. Do not perform cleanup unless I explicitly request Apply mode.
+  default_prompt: "Use $jww-codex-maintenance in Audit mode to inspect Codex local state."
