@@ -27,7 +27,7 @@ Delegate a sweep to a read-only search agent when the harness provides one,
 delegation is authorized, and both conditions hold:
 
 - the location is unknown — many candidate files, uncertain naming, or a
-  whole-repository grep
+  whole-repository code search
 - you need the conclusion, not the surrounding code
 
 Run the search yourself when the target is specific enough that the output is
