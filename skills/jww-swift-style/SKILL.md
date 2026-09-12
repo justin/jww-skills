@@ -22,6 +22,8 @@ paths: "**/*.swift"
 ## Source Layout
 
 - Use four-space indentation and blank lines to group declarations and logical steps.
+- Use the applicable SwiftLint `line_length` setting for the line-length limit; default to 150 characters when no limit is configured. Follow an explicit repository override, including a disabled `line_length` rule.
+- Match Xcode’s Control-I (Re-Indent) output for indentation and continuation alignment using the project’s indentation settings. Apply this to calls, declarations, conditions, chains, and closures; follow the wrapping examples for line-break placement.
 - Add sections to substantial types only when the repository already uses the divider style shown below. Match the neighboring files exactly: some use only the `// MARK:` line, others follow it with the box comment. Keep existing section names and ordering when extending a type.
 
 ```swift
