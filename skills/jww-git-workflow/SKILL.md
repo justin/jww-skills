@@ -28,8 +28,9 @@ This skill assumes the general Git-safety rules supplied by the environment (pre
 3. Keep each commit cohesive. When applying feedback to an existing pull request or work in progress, amend the applicable existing commit instead of adding a follow-up commit, unless Justin or repository conventions require separate commits.
 4. Write a capitalized imperative subject that describes the delivered behavior, not the implementation phase or files changed. Omit a trailing period and keep it under about 60 characters. Do not use type or scope prefixes.
 5. Add a body whenever the rationale is not evident from the diff. Always do so for security, concurrency, or default changes, and for changes that remove or restrict existing behavior. Explain the problem first, then the change, then any consequence the reader needs. Wrap the commit body at 72 columns; do not enumerate changed files.
-6. When a commit resolves an issue, close with exactly one issue reference on its final line, such as `Closes #231` or `Fixes #253`. Do not mention an assistant, model, agent, or tool, and do not add generated-by trailers.
-7. Rewrite a consolidated commit message to describe the delivered feature, rather than the final working checkpoint.
+6. Never use literal `\\n` escape sequences as line breaks in commit messages. For a multiline message, write actual newlines to a temporary file and commit with `git commit --file`; after committing, inspect the stored message with `git log -1 --format=%B`.
+7. When a commit resolves an issue, close with exactly one issue reference on its final line, such as `Closes #231` or `Fixes #253`. Do not mention an assistant, model, agent, or tool, and do not add generated-by trailers.
+8. Rewrite a consolidated commit message to describe the delivered feature, rather than the final working checkpoint.
 
 ## Updating and Publishing
 
