@@ -38,7 +38,7 @@ paths: "**/*.swift"
 - Keep initializers, lifecycle methods, actions/delegate methods, and private conveniences in the local order. Put simple stored properties before those sections.
 - Follow the enclosing file's `self.` convention. In view-controller code, use explicit `self.` consistently where the file does; do not add or remove it globally.
 - When the SwiftLint configuration defines `always_on_same_line` or `always_on_line_above`, follow those rules. Otherwise, put `@available`, `@Test`, `@ViewBuilder`, and `@Model` on the line above their declaration. Keep property-wrapper attributes on the same declaration and follow local wrapping when a declaration would exceed configured limits.
-- Match local wrapping of long declarations and calls. Do not wrap until you hit a lint exception. Follow the repository's configured line and complexity limits, and use the smallest scoped `swiftlint:disable` only when a legitimate local exception remains.
+- Match local wrapping and configured line-length limits; do not reflow unrelated code. When wrapping is ambiguous, read [references/line-wrapping.md](references/line-wrapping.md) for examples. Follow the repository's complexity limits, and use the smallest scoped `swiftlint:disable` only when a legitimate local exception remains.
 
 ## Naming, Access, and Documentation
 
