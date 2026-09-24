@@ -1,7 +1,6 @@
 ---
 name: jww-swift-style
 description: Style Swift code for JWW projects. Use when generating, editing, or reviewing application, package, extension, or test code that must match Justin's conventions; do not use for non-Swift work or as a substitute for platform-specific implementation skills.
-paths: "**/*.swift"
 ---
 
 # JWW Swift Style
