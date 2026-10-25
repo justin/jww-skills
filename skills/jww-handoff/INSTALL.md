@@ -128,9 +128,13 @@ Copilot has no hook equivalent.
 
 ## Ignoring the Handoff Directory
 
-The skill writes to `.handoffs/` at the repository root and expects that path
-to be ignored. Prefer a global ignore file so each repository does not need its
-own entry:
+The default location is `.handoffs/` at the repository root, which must be
+ignored. If it is not ignored, the skill uses
+`~/.handoffs/<repository-name>/<task-slug>.md` to survive the session and
+reports the path for manual resume. The Claude Code SessionStart hook only
+discovers files in the root `.handoffs/` directory; it does not discover
+fallback paths.
+Prefer a global ignore file so each repository does not need its own entry:
 
 ```sh
 git config --global core.excludesfile ~/.gitignore_global

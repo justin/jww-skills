@@ -37,8 +37,13 @@ nor the request identifies one, list the candidates and ask which to resume.
    when one exists.
 2. Otherwise use `.handoffs/<task-slug>.md` at the repository root. Confirm the
    path is ignored by version control before writing. If it is not ignored,
-   report the needed `.handoffs/` entry and ask before changing either the
-   repository or global ignore configuration. Ask before committing a handoff.
+   use `~/.handoffs/<repository-name>/<task-slug>.md` so the handoff survives
+   the session; do not use `/tmp` or a session scratchpad. Qualify the
+   repository name when needed to distinguish repositories with the same name.
+   Give the fallback path for the next resume. Report the needed `.handoffs/`
+   entry without blocking capture, and ask before changing either the
+   repository or global ignore configuration.
+   Ask before committing a handoff.
 3. Update the existing file for a task. Do not create a parallel version, and do
    not split one outcome across several files. Link related tasks by path
    instead of repeating their content.
