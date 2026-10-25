@@ -44,3 +44,35 @@ This skill assumes the general Git-safety rules supplied by the environment (pre
 1. Follow repository-specific pull-request requirements before general guidance.
 2. Preserve decision-relevant Git and GitHub CLI output verbatim, especially errors and remote-state conflicts.
 3. For review feedback, CI failures, or pull-request triage, use the harness's GitHub integration or the `gh` CLI. Do not claim connector or CLI output includes information it does not provide.
+
+## Review and CI Follow-Through
+
+Resolve actionable feedback against the current diff, review discussions,
+and failing check output. Distinguish defects from stale, already-addressed,
+or unsupported findings, and explain dismissed findings with evidence.
+
+Use the Commit Workflow for fixes. Report addressed findings, remaining
+blockers, and checks and feedback associated with the published head. Queued
+or running CI is pending; local validation alone does not establish merge
+readiness. Do not request another review unless asked.
+
+## Branch and Worktree Cleanup
+
+Determine which branches and worktrees are obsolete from current remote and
+pull-request evidence. Account for squash or rebase merges: absence from Git's
+merged-branch list does not prove work is unmerged, and a closed pull request
+does not prove its changes were delivered. A delivered branch may still be
+the base of active work. Report retained candidates and the reason.
+
+## Splitting Dependent Work
+
+Produce independently reviewable outcomes with explicit bases and genuine
+dependencies. Preserve a recoverable reference before rewriting history.
+Keep unrelated working-tree changes on their own branch or worktree when
+separation is requested.
+
+Check each resulting diff against its intended base for missing prerequisites,
+duplicate changes, and unrelated work, using the repository's validation
+workflow for each affected outcome. Retain and describe dependencies that
+prevent a feature from standing alone. Keep published pull-request bases and
+descriptions consistent with the split, following Updating and Publishing.
