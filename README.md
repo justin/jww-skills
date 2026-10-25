@@ -51,7 +51,8 @@ npx skills add . --skill <skill-name> -a claude-code --global
 ```
 
 Available skills are `jww-bounded-investigation`,
-`jww-git-workflow`, `jww-handoff`, `jww-repository-validation`,
+`jww-git-workflow`, `jww-handoff`, `jww-issue-reconciliation`,
+`jww-repository-validation`,
 `jww-swift-style`, and `jww-writing-style`.
 
 ```sh
@@ -92,6 +93,7 @@ An agent also loads a skill on its own when the request matches the skill's
 | `jww-bounded-investigation` | [`skills/jww-bounded-investigation/`](skills/jww-bounded-investigation/) | Evidence ledger and search delegation for multi-file investigation. Pairs with `jww-handoff`. |
 | `jww-git-workflow` | [`skills/jww-git-workflow/`](skills/jww-git-workflow/) | Safe Git, pull-request, and publishing workflows. |
 | `jww-handoff` | [`skills/jww-handoff/`](skills/jww-handoff/) | Canonical handoff file for work spanning sessions or phases. See its [`INSTALL.md`](skills/jww-handoff/INSTALL.md) for slash-command and hook setup. |
+| `jww-issue-reconciliation` | [`skills/jww-issue-reconciliation/`](skills/jww-issue-reconciliation/) | Reconcile tracked issues with implementation and established decisions. |
 | `jww-repository-validation` | [`skills/jww-repository-validation/`](skills/jww-repository-validation/) | Proportionate validation for repository changes. |
 | `jww-swift-style` | [`skills/jww-swift-style/`](skills/jww-swift-style/) | JWW Swift style conventions for application, package, extension, and test code. |
 | `jww-writing-style` | [`skills/jww-writing-style/`](skills/jww-writing-style/) | Draft and revise prose in Justin's direct, conversational voice. |

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Issue Reconciliation"
+  short_description: "Reconcile issues with code and decisions"
+  default_prompt: "Use $jww-issue-reconciliation to audit the requested issues against implementation and established decisions."
