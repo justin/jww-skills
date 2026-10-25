@@ -27,6 +27,10 @@ reach grows.
 
 Start with read-only checks. Do not install dependencies, apply configuration, migrate data, publish artifacts, or otherwise change external state merely to validate unless the task authorizes those effects.
 
+Once the required, relevant checks pass, proceed toward completion. Broaden or
+repeat validation only when further changes, failures, or unresolved concerns
+justify it.
+
 ## Report Results
 
 1. Review failures against the changed behavior before declaring them regressions.
